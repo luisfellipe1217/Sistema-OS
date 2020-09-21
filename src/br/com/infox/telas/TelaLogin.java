@@ -2,6 +2,7 @@ package br.com.infox.telas;
 
 import java.sql.*;
 import br.com.infox.dal.ModuloConexao;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class TelaLogin extends javax.swing.JFrame {
@@ -19,11 +20,29 @@ public class TelaLogin extends javax.swing.JFrame {
 
             rs = pst.executeQuery();
 
-            if (rs.next()) {               
-                TelaPrincipal principal = new TelaPrincipal();                
-                principal.setVisible(true);
-                this.dispose();
-                conexao.close();
+            if (rs.next()) {
+                // a linha abaixo obtem o conteudo do campo perfil.
+
+                String perfil = rs.getString(6);
+                String user = rs.getString(2);
+                // a estrutura abaixo faz o tratamento do perfil.
+
+                if (perfil.equals("admin")) {
+
+                    TelaPrincipal principal = new TelaPrincipal();
+                    principal.setVisible(true);
+                    TelaPrincipal.menRel.setEnabled(true);
+                    TelaPrincipal.menCadUser.setEnabled(true);
+                    TelaPrincipal.lblUser.setText(user);
+                    TelaPrincipal.lblUser.setForeground(Color.red);
+                    this.dispose();
+                    conexao.close();
+                } else {
+                    TelaPrincipal principal = new TelaPrincipal();
+                    principal.setVisible(true);
+                    TelaPrincipal.lblUser.setText(user);
+                    this.dispose();
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválido");
             }
@@ -67,12 +86,6 @@ public class TelaLogin extends javax.swing.JFrame {
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
-            }
-        });
-
-        txtSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSenhaActionPerformed(evt);
             }
         });
 
@@ -120,10 +133,6 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         logar();

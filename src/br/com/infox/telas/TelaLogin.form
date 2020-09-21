@@ -94,9 +94,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtSenha">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSenhaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblStatus">
       <Properties>
