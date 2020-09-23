@@ -7,8 +7,6 @@ package br.com.infox.telas;
 
 import br.com.infox.dal.ModuloConexao;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class TelaUsuario extends javax.swing.JInternalFrame {
@@ -353,7 +351,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         try {
 
             if (txtUsuID.getText().isEmpty() || txtUsuNome.getText().isEmpty() || txtUsuLogin.getText().isEmpty() || txtUsuSenha.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos necessários!");
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios!");
             } else {
                 pst = conexao.prepareStatement(sql);
                 pst.setString(1, txtUsuID.getText());
@@ -430,7 +428,8 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }
+    }    
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar MenuTelaUser;
     private javax.swing.JMenu NovoMen;
