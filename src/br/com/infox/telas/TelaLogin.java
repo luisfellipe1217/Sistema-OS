@@ -22,7 +22,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
             if (rs.next()) {
                 // a linha abaixo obtem o conteudo do campo perfil.
-
                 String perfil = rs.getString(6);
                 String user = rs.getString(2);
                 // a estrutura abaixo faz o tratamento do perfil.
@@ -60,6 +59,7 @@ public class TelaLogin extends javax.swing.JFrame {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/dbOk.png")));
         } else {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/dbError.png")));
+            JOptionPane.showMessageDialog(null, "Erro de conexão com o banco de dados.");
         }
     }
 
